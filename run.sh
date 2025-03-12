@@ -33,6 +33,7 @@ then
         --stack-name $STACK_NAME \
         --template-file $TEMPLATE_FILE_NAME \
         --parameter-overrides file://$PARAMETERS_FILE_NAME \
+        --capabilities "CAPABILITY_NAMED_IAM" \
         --region=$REGION
 fi
 
@@ -50,5 +51,6 @@ then
         --template-file $TEMPLATE_FILE_NAME \
         --parameter-overrides file://$PARAMETERS_FILE_NAME \
         --no-execute-changeset \
+        --capabilities "CAPABILITY_NAMED_IAM" \
         --region=$REGION 
 fi

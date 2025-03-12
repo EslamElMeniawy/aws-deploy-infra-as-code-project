@@ -50,7 +50,7 @@ Resources:
         - IpProtocol: tcp
           FromPort: 22
           ToPort: 22
-          SourceSecurityGroupId: !Ref BastionsSecurityGroup
+          SourceSecurityGroupId: !Ref BastionSecurityGroup
         - IpProtocol: tcp
           FromPort: 80
           ToPort: 80
@@ -67,9 +67,9 @@ Resources:
         UserData:
           Fn::Base64: |
             #!/bin/bash
-            apt-get update -y
+            sudo apt-get update -y
             sudo apt-get install nginx -y
-            service nginx start
+            sudo service nginx start
             echo "it works! Udagram, Udacity" > /var/www/html/index.html
         BlockDeviceMappings:
           - DeviceName: "/dev/sdk"
@@ -154,7 +154,6 @@ Resources:
     Type: AWS::S3::Bucket
     Properties:
       BucketName: !Sub "${ProjectName}-667646505404"
-      AccessControl: PublicRead
       VersioningConfiguration:
         Status: Enabled
       BucketEncryption:
@@ -163,9 +162,24 @@ Resources:
               SSEAlgorithm: AES256
       PublicAccessBlockConfiguration:
         BlockPublicAcls: false
-        IgnorePublicAcls: false
         BlockPublicPolicy: false
+        IgnorePublicAcls: false
         RestrictPublicBuckets: false
+      WebsiteConfiguration:
+        IndexDocument: index.html
+        ErrorDocument: index.html
+
+  BucketPolicy:
+    Type: AWS::S3::BucketPolicy
+    Properties:
+      Bucket: !Ref S3Bucket
+      PolicyDocument:
+        Version: "2012-10-17"
+        Statement:
+          - Effect: Allow
+            Principal: "*"
+            Action: "s3:GetObject"
+            Resource: !Sub "arn:aws:s3:::${S3Bucket}/*"
 
   CloudFrontDistribution:
     Type: AWS::CloudFront::Distribution
