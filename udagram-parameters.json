@@ -2,5 +2,13 @@
   {
     "ParameterKey": "ProjectName",
     "ParameterValue": "infrastructure-as-code-project"
+  },
+  {
+    "ParameterKey": "HomeIp",
+    "ParameterValue": "41.33.183.2/32"
+  },
+  {
+    "ParameterKey": "KeyPairName",
+    "ParameterValue": "BastionKeyPair"
   }
 ]
