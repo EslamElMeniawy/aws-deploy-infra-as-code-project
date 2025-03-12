@@ -233,3 +233,7 @@ Outputs:
   CloudFrontURL:
     Description: CloudFront Distribution URL
     Value: !Sub "https://${CloudFrontDistribution.DomainName}"
+
+  BastionHostPublicIP:
+    Description: Public IP address of the Bastion Host
+    Value: !GetAtt Bastion.PublicIp
