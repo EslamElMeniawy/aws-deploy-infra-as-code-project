@@ -160,3 +160,8 @@ Resources:
       Path: "/"
       Roles:
         - !Ref IAMRole
+
+Outputs:
+  LoadBalancerURL:
+    Description: Public URL of the Load Balancer
+    Value: !Sub "http://${LoadBalancer.DNSName}"
