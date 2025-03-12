@@ -10,7 +10,7 @@
 #
 # Usage examples:
 #   ./run.sh deploy us-east-1 project project.yml project-params.json
-#   ./run.sh preview us-east-1 project exercise.yml project-params.json
+#   ./run.sh preview us-east-1 project project.yml project-params.json
 #   ./run.sh delete us-east-1 project
 #
 
