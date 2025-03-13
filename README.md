@@ -40,3 +40,9 @@ To delete the network infrastructure use below command:
 ```sh
 ./run.sh delete us-east-1 udagram-network-stack
 ```
+
+## Working Test
+
+Use below URL for verifying that the solution works.
+
+> [http://udagra-loadb-66o7lrzuv5uj-914457817.us-east-1.elb.amazonaws.com/](http://udagra-loadb-66o7lrzuv5uj-914457817.us-east-1.elb.amazonaws.com/).
