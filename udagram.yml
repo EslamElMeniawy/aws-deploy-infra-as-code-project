@@ -55,6 +55,11 @@ Resources:
           FromPort: 80
           ToPort: 80
           SourceSecurityGroupId: !Ref LoadBalancerSecurityGroup
+      SecurityGroupEgress:
+        - IpProtocol: tcp
+          FromPort: 0
+          ToPort: 65535
+          CidrIp: 0.0.0.0/0
 
   LaunchTemplate:
     Type: AWS::EC2::LaunchTemplate
@@ -70,11 +75,14 @@ Resources:
             sudo apt-get update -y
             sudo apt-get install nginx -y
             sudo service nginx start
-            echo "it works! Udagram, Udacity" > /var/www/html/index.html
+            cd /var/www/html
+            echo "it works! Udagram, Udacity" > index.html
         BlockDeviceMappings:
           - DeviceName: "/dev/sdk"
             Ebs:
               VolumeSize: "10"
+        IamInstanceProfile:
+          Name: !Ref InstanceProfile
 
   AutoScalingGroup:
     Type: AWS::AutoScaling::AutoScalingGroup
